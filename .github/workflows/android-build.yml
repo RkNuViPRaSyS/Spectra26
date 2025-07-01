@@ -2,8 +2,8 @@ name: Build Android APK
 
 on:
   push:
-    branches: [main]
-  workflow_dispatch:
+    branches:
+      - main
 
 jobs:
   build-apk:
@@ -24,17 +24,17 @@ jobs:
           pip install briefcase
 
       - name: Create Android project
-        run: |
-          briefcase create android
+        run: briefcase create android
 
-      - name: Build APK
+      - name: Build Android APK
         run: briefcase build android
 
-      - name: List APK build output (DEBUG)
-        run: ls -R build/
+      - name: Package Android APK
+        run: briefcase package android
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: build-apk
+          name: spectrasight-debug
           path: dist/*.apk
+
