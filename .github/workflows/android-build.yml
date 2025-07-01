@@ -1,16 +1,14 @@
-name: Build Android APK
+name: build-apk
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   build-apk:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Check out the code
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Set up Python
@@ -18,7 +16,7 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install Briefcase
+      - name: Install briefcase
         run: |
           python -m pip install --upgrade pip
           pip install briefcase
@@ -35,6 +33,5 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: spectrasight-debug
-          path: dist/*.apk
-
+          name: SpectraSight-APK
+          path: platforms/android/app/build/outputs/apk/debug/*.apk
