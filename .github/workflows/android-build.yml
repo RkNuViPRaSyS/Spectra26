@@ -2,29 +2,37 @@ name: build-apk
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
-  build:
+  build-apk:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Set up Docker
-        uses: docker/setup-buildx-action@v2
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
 
-      - name: Pull BeeWare Docker image
-        run: docker pull beeware/briefcase
-
-      - name: Build APK inside Docker
+      - name: Install Briefcase and dependencies
         run: |
-          docker run --rm -v ${{ github.workspace }}:/app beeware/briefcase \
-            bash -c "pip install -U briefcase && briefcase create android && briefcase build android && briefcase package android"
+          sudo apt-get update
+          sudo apt-get install -y openjdk-17-jdk unzip curl libglib2.0-0
+          pip install --upgrade pip
+          pip install briefcase
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
+      - name: Create & Build APK
+        run: |
+          briefcase create android
+          briefcase build android
+          briefcase package android
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v3
         with:
           name: SpectraSight-APK
           path: dist/SpectraSight/android/*.apk
