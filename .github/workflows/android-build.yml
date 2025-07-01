@@ -25,10 +25,9 @@ jobs:
         run: briefcase create android
 
       - name: Build Android APK
-        run: briefcase build android
-
-      - name: Package Android APK
-        run: briefcase package android
+        run: |
+          briefcase build android
+          briefcase package android
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
