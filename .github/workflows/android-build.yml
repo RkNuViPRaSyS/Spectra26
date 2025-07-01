@@ -36,8 +36,9 @@ jobs:
           briefcase package android
 
       - name: Upload APK
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
-          name: SpectraSight-APK
-          path: platforms/android/*.apk
+          name: build-apk
+          path: build/spectrasight/android/*.apk
+
 
