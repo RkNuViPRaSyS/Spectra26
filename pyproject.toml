@@ -12,6 +12,7 @@ description = "Advanced Android vulnerability scanner with GUI and smart logic."
 formal_name = "SpectraSight"
 description = "Powerful vulnerability scanner for Android"
 sources = ["src/spectrasight"]
+entry_point = "spectrasight.app:main"  # ✅ Add this line
 
 [tool.briefcase.app.spectrasight.android]
 gradle_dependencies = [
