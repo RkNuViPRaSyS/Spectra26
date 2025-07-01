@@ -28,17 +28,13 @@ jobs:
           briefcase create android
 
       - name: Build APK
-        run: |
-          briefcase build android
+        run: briefcase build android
 
-      - name: Package APK
-        run: |
-          briefcase package android
+      - name: List APK build output (DEBUG)
+        run: ls -R build/
 
       - name: Upload APK
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: build-apk
           path: build/spectrasight/android/*.apk
-
-
