@@ -2,19 +2,20 @@
 project_name = "SpectraSight"
 bundle = "com.spectrasight"
 version = "2.6"
-description = "Advanced ethical vulnerability scanner and exploit tester"
-author = "SpectraSec"
-author_email = "spectra@example.com"
+author = "Your Name"
+author_email = "your@email.com"
 url = "https://github.com/RkNuViPRaSyS/Spectra26"
+license = "MIT"
+description = "Advanced Android vulnerability scanner with GUI and smart logic."
 
 [tool.briefcase.app.spectrasight]
 formal_name = "SpectraSight"
-source = "src/spectrasight"
-requires = []
+description = "Powerful vulnerability scanner for Android"
+sources = ["src/spectrasight"]
 
 [tool.briefcase.app.spectrasight.android]
-build_gradle_dependencies = [
+gradle_dependencies = [
   "androidx.appcompat:appcompat:1.0.2",
   "androidx.constraintlayout:constraintlayout:1.1.3",
-  "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0",
+  "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 ]
